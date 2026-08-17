@@ -1,0 +1,19 @@
+rule,clip,arm,TP,FP,FN
+fixed_10 (locked),clip_1,predicted,0,1,0
+fixed_10 (locked),clip_1,oracle,0,1,0
+fixed_10 (locked),clip_2,predicted,0,4,4
+fixed_10 (locked),clip_2,oracle,2,2,2
+fixed_10 (locked),clip_3,predicted,2,7,1
+fixed_10 (locked),clip_3,oracle,1,2,2
+fixed_60,clip_1,predicted,0,1,0
+fixed_60,clip_1,oracle,0,1,0
+fixed_60,clip_2,predicted,0,4,4
+fixed_60,clip_2,oracle,3,1,1
+fixed_60,clip_3,predicted,3,6,0
+fixed_60,clip_3,oracle,2,1,1
+duration_scaled,clip_1,predicted,0,1,0
+duration_scaled,clip_1,oracle,0,1,0
+duration_scaled,clip_2,predicted,0,4,4
+duration_scaled,clip_2,oracle,2,2,2
+duration_scaled,clip_3,predicted,2,7,1
+duration_scaled,clip_3,oracle,1,2,2

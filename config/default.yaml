@@ -1,0 +1,82 @@
+# nba-video-analytics: pipeline configuration.
+# Every key below is read at run time. Model paths for the detectors are set
+# in main.py; video paths come from CLI arguments.
+
+# The method, crop fractions, confidence threshold, prompts and aggregation
+# settings are outputs of the leave-one-clip-out sweep, not hand-set values.
+# Changing any of them invalidates the reported accuracy: re-sweep first.
+#
+# crop_fraction applies to FashionCLIP only, despite the generic name. Each
+# comparator has its own measured-best crop below. A single shared value
+# would move K-means and embedding clustering off their reported numbers.
+team_classifier:
+  method: "fashionclip"            # "fashionclip", "kmeans" or "embedding"
+  team_1_description: "white NBA jersey"
+  team_2_description: "dark blue NBA jersey"
+  team_1_colour: [255, 245, 238]   # off-white, BGR
+  team_2_colour: [128, 0, 0]       # dark blue, BGR
+  reset_interval: 50
+  crop_fraction: 1.0               # FashionCLIP only
+  fashionclip_confidence_threshold: 0.5
+  # Confidence-weighted centred sliding window over per-frame decisions.
+  # Centred, so this stage is non-causal and offline-batch: it needs the
+  # frames after each frame.
+  aggregation: "window_weighted"   # "window_weighted" or "none"
+  aggregation_window: 9
+  kmeans_fit_stride: 1             # every frame; 3.3 s worst case here
+  kmeans_crop_fraction: 0.667
+  kmeans_background_distance_threshold: 25
+  # Abstention margins in the shared d_other/(d_near + d_other) form. Not
+  # calibrated probabilities, and not comparable across methods. 0.5 is an
+  # exact tie, so these are floors just above chance.
+  kmeans_margin_threshold: 0.55
+  embedding_fit_stride: 1
+  embedding_crop_fraction: 0.5
+  embedding_margin_threshold: 0.55
+
+# Per-clip overrides of prompts and annotator colours, read by
+# resolve_clip_settings(). Only these four keys are recognised; an unknown
+# key raises. A clip absent here uses the defaults above.
+clips:
+  clip_1:                                        # Lakers vs Clippers
+    team_1_description: "white NBA jersey"
+    team_2_description: "dark blue NBA jersey"
+    team_1_colour: [255, 245, 238]
+    team_2_colour: [128, 0, 0]
+  clip_2:                                        # Thunder vs Timberwolves
+    team_1_description: "white NBA jersey"
+    team_2_description: "dark blue NBA jersey"
+    team_1_colour: [255, 245, 238]
+    team_2_colour: [128, 0, 0]
+  clip_3:                                        # Kings vs Rockets
+    team_1_description: "white NBA jersey"
+    team_2_description: "red NBA jersey"
+    team_1_colour: [255, 245, 238]
+    team_2_colour: [0, 0, 200]                   # red; dark blue misrenders here
+
+possession:
+  max_ball_distance: 50
+  hold_threshold: 5
+  bbox_overlap_min: 0.8
+
+# confidence_threshold is the instance threshold: it gates whether a court is
+# detected at all, and is part of the keypoint cache fingerprint. The
+# per-keypoint threshold is deliberately absent, since the A3 ablation
+# selected no policy for it.
+keypoints:
+  weights: models/keypoints.pt
+  confidence_threshold: 0.5
+
+homography:
+  court_template_path: assets/court_template.png
+
+# fps is deliberately not a key: it comes from the video metadata, since a
+# configured rate disagreeing with the footage would scale every speed
+# silently. court_length_m and court_width_m are not read by the pipeline
+# (CourtMapper already returns metres) but are pinned by
+# tests/test_court_template.py, so editing them here without editing the
+# module fails the suite.
+metrics:
+  court_length_m: 28.65
+  court_width_m: 15.24
+  speed_window: 5

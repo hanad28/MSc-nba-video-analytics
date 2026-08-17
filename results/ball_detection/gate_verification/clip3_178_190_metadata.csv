@@ -1,0 +1,14 @@
+frame,raw_bbox,raw_confidence,predicted_position,last_anchor_frame,last_anchor_x,last_anchor_y,anchor_history_span_frames,distance_raw_to_gate_reference,tolerance_used,decision,path
+178,"[540.8, 537.1, 553.8, 563.0]",0.439,"(288.14, 371.84)",172,437.46,360.0,3,314.53,40.0 + 15.0x6 = 130.00 (fitted-prediction formula),REJECT,predicted
+179,"[411.9, 407.7, 432.4, 436.8]",0.458,"(263.25, 373.81)",172,437.46,360.0,3,166.11,40.0 + 15.0x7 = 145.00 (fitted-prediction formula),REJECT,predicted
+180,"[416.2, 404.3, 434.7, 437.3]",0.546,"(238.36, 375.79)",172,437.46,360.0,3,192.40,40.0 + 15.0x8 = 160.00 (fitted-prediction formula),REJECT,predicted
+181,"[428.1, 408.2, 450.7, 441.2]",0.667,"(213.47, 377.76)",172,437.46,360.0,3,230.75,40.0 + 15.0x9 = 175.00 (fitted-prediction formula),REJECT,predicted
+182,"[1041.9, 302.0, 1058.8, 326.8]",0.558,"(188.59, 379.73)",172,437.46,360.0,3,864.25,40.0 + 15.0x10 = 190.00 (fitted-prediction formula),REJECT,predicted
+183,"[1040.8, 300.3, 1057.9, 326.3]",0.669,"(163.7, 381.71)",172,437.46,360.0,3,888.28,40.0 + 15.0x11 = 205.00 (fitted-prediction formula),REJECT,predicted
+184,"[480.7, 393.4, 498.5, 422.7]",0.629,"(138.81, 383.68)",172,437.46,360.0,3,351.65,40.0 + 15.0x12 = 220.00 (fitted-prediction formula),REJECT,predicted
+185,"[496.0, 380.5, 516.4, 407.2]",0.504,"(113.93, 385.65)",172,437.46,360.0,3,392.34,40.0 + 15.0x13 = 235.00 (fitted-prediction formula),REJECT,predicted
+186,"[508.4, 367.6, 527.8, 394.3]",0.887,"(89.04, 387.63)",172,437.46,360.0,3,429.13,40.0 + 15.0x14 = 250.00 (fitted-prediction formula),REJECT,predicted
+187,"[518.3, 356.9, 537.8, 384.4]",0.754,"(64.15, 389.6)",172,437.46,360.0,3,464.29,40.0 + 15.0x15 = 265.00 (fitted-prediction formula),REJECT,predicted
+188,"[529.1, 345.7, 550.3, 373.4]",0.872,"(39.26, 391.58)",172,437.46,360.0,3,501.47,40.0 + 15.0x16 = 280.00 (fitted-prediction formula),REJECT,predicted
+189,"[538.6, 336.5, 560.1, 364.7]",0.889,"(14.38, 393.55)",172,437.46,360.0,3,536.73,40.0 + 15.0x17 = 295.00 (fitted-prediction formula),REJECT,predicted
+190,"[549.1, 328.8, 570.3, 356.9]",0.845,"(-10.51, 395.52)",172,437.46,360.0,3,572.63,40.0 + 15.0x18 = 310.00 (fitted-prediction formula),REJECT,predicted

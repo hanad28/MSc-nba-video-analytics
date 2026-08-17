@@ -1,0 +1,5 @@
+clip,n_frames,mapped_frames,unmapped_frames,insufficient_keypoints,degenerate_keypoints,malformed_input,positions_mapped,positions_dropped_out_of_bounds,positions_dropped_at_horizon,reconciles
+clip_1,117,107,10,10,0,0,664,0,0,True
+clip_2,174,174,0,0,0,0,1623,0,0,True
+clip_3,243,198,45,45,0,0,1598,0,0,True
+TOTAL,534,479,55,55,0,0,3885,0,0,True

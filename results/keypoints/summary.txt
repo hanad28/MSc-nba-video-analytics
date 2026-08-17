@@ -1,0 +1,165 @@
+
+Sufficiency (section 4.3)
+clip    frames  reach_4  rate_4  reach_5  rate_5  runs_below_4  run_lengths
+clip_1  117     107/117  0.915   91/117   0.778   2             1,9        
+clip_2  174     174/174  1.000   174/174  1.000   0             -          
+clip_3  243     198/243  0.815   193/243  0.794   1             45         
+
+Reprojection frame accounting — every frame is skipped, lost (to either cause) or scored (degenerate_fits counts individual held-out reprojections, not frames)
+clip    frames  skipped_below_5  lost_all_fits_degenerate  lost_all_fits_collinear  scored  accounted  reconciles  degenerate_fits  collinear_fits  observations
+clip_1  117     26               0                         0                        91      117        yes         0                112             488         
+clip_2  174     0                0                         0                        174     174        yes         0                348             810         
+clip_3  243     50               0                         0                        193     243        yes         0                360             865         
+
+Leave-one-out reprojection by confident-count bucket (section 4.2)
+scope   bucket  n     median_m  iqr_m        median_px  iqr_px     
+clip_1  5       15    0.978     0.516-1.330  55.78      14.01-94.80
+clip_1  6       160   0.107     0.060-0.188  3.40       1.63-8.06  
+clip_1  7       289   0.061     0.031-0.136  2.36       0.72-5.01  
+clip_1  8       24    0.120     0.033-0.200  5.53       1.82-10.89 
+clip_2  6       300   0.030     0.020-0.046  0.86       0.53-1.45  
+clip_2  7       420   0.047     0.033-0.064  1.49       1.18-2.11  
+clip_2  8       90    0.040     0.031-0.096  2.22       1.64-3.91  
+clip_3  5       48    0.103     0.067-0.382  3.30       2.08-12.84 
+clip_3  6       408   0.057     0.038-0.084  1.71       1.25-3.39  
+clip_3  7       409   0.044     0.028-0.057  1.51       1.08-2.40  
+pooled  5       63    0.205     0.074-0.579  8.89       2.32-19.06 
+pooled  6       868   0.050     0.028-0.080  1.50       0.94-2.75  
+pooled  7       1118  0.047     0.031-0.065  1.56       1.08-3.04  
+pooled  8       114   0.041     0.031-0.103  2.36       1.69-4.88  
+
+Leave-one-out reprojection by keypoint index, per clip and pooled (section 4.2)
+scope   index  n    median_m  iqr_m        median_px  iqr_px      
+clip_1  0      32   0.048     0.032-0.078  1.35       0.76-1.86   
+clip_1  1      30   0.018     0.011-0.062  0.75       0.55-1.78   
+clip_1  2      26   0.077     0.032-0.164  1.69       1.17-10.22  
+clip_1  3      19   0.117     0.095-0.134  4.44       2.94-5.08   
+clip_1  4      6    0.147     0.101-0.198  4.22       2.98-6.38   
+clip_1  5      0    -         -            -          -           
+clip_1  6      30   0.752     0.408-1.218  40.17      19.02-74.29 
+clip_1  7      34   0.680     0.386-1.686  53.25      23.52-114.72
+clip_1  8      18   0.098     0.082-0.117  3.69       3.15-5.65   
+clip_1  9      18   0.173     0.155-0.230  8.36       7.69-10.86  
+clip_1  10     0    -         -            -          -           
+clip_1  11     28   0.045     0.041-0.048  3.70       3.43-4.10   
+clip_1  12     45   0.045     0.022-0.123  1.67       0.56-5.77   
+clip_1  13     51   0.072     0.061-0.086  2.36       1.92-2.82   
+clip_1  14     58   0.018     0.007-0.072  0.51       0.36-2.11   
+clip_1  15     59   0.041     0.032-0.094  0.96       0.69-2.37   
+clip_1  16     17   0.136     0.125-0.203  7.95       5.74-9.49   
+clip_1  17     17   0.333     0.246-0.388  15.51      11.63-27.41 
+clip_2  0      0    -         -            -          -           
+clip_2  1      0    -         -            -          -           
+clip_2  2      0    -         -            -          -           
+clip_2  3      0    -         -            -          -           
+clip_2  4      0    -         -            -          -           
+clip_2  5      0    -         -            -          -           
+clip_2  6      0    -         -            -          -           
+clip_2  7      0    -         -            -          -           
+clip_2  8      0    -         -            -          -           
+clip_2  9      0    -         -            -          -           
+clip_2  10     15   0.171     0.033-0.175  9.97       3.99-10.24  
+clip_2  11     99   0.072     0.051-0.079  6.72       5.35-7.47   
+clip_2  12     174  0.040     0.034-0.050  1.91       1.55-2.23   
+clip_2  13     174  0.042     0.023-0.055  1.15       0.63-1.51   
+clip_2  14     174  0.026     0.017-0.032  1.04       0.46-1.33   
+clip_2  15     174  0.047     0.032-0.067  1.14       0.80-1.47   
+clip_2  16     0    -         -            -          -           
+clip_2  17     0    -         -            -          -           
+clip_3  0      62   0.052     0.026-0.060  1.38       0.97-2.19   
+clip_3  1      62   0.053     0.043-0.061  1.23       1.11-1.87   
+clip_3  2      59   0.079     0.054-0.087  1.83       1.56-2.10   
+clip_3  3      49   0.075     0.054-0.111  3.39       2.79-3.75   
+clip_3  4      0    -         -            -          -           
+clip_3  5      0    -         -            -          -           
+clip_3  6      7    0.896     0.775-0.972  66.39      55.68-70.51 
+clip_3  7      13   1.643     1.457-1.967  96.32      68.44-127.44
+clip_3  8      3    0.256     0.215-0.292  9.00       8.94-9.31   
+clip_3  9      3    0.711     0.571-0.817  24.85      20.45-29.85 
+clip_3  10     0    -         -            -          -           
+clip_3  11     79   0.059     0.045-0.064  5.89       4.11-6.39   
+clip_3  12     120  0.024     0.017-0.088  1.48       1.03-5.05   
+clip_3  13     126  0.052     0.046-0.059  2.21       1.99-2.34   
+clip_3  14     131  0.027     0.023-0.032  1.42       1.23-1.49   
+clip_3  15     131  0.050     0.041-0.061  0.99       0.87-1.21   
+clip_3  16     10   0.140     0.106-0.170  5.65       3.94-6.35   
+clip_3  17     10   0.207     0.150-0.667  8.52       6.66-21.12  
+pooled  0      94   0.051     0.030-0.067  1.37       0.88-1.93   
+pooled  1      92   0.050     0.031-0.061  1.17       0.98-1.83   
+pooled  2      85   0.077     0.053-0.089  1.82       1.52-2.14   
+pooled  3      68   0.092     0.054-0.116  3.47       2.84-3.98   
+pooled  4      6    0.147     0.101-0.198  4.22       2.98-6.38   
+pooled  5      0    -         -            -          -           
+pooled  6      37   0.892     0.413-1.067  52.43      24.34-74.62 
+pooled  7      47   1.009     0.451-1.917  67.64      27.53-122.57
+pooled  8      21   0.116     0.082-0.145  3.95       3.23-6.50   
+pooled  9      21   0.211     0.155-0.300  8.91       8.09-16.04  
+pooled  10     15   0.171     0.033-0.175  9.97       3.99-10.24  
+pooled  11     206  0.059     0.046-0.071  5.82       4.13-6.80   
+pooled  12     339  0.037     0.024-0.060  1.81       1.30-2.53   
+pooled  13     351  0.052     0.040-0.061  1.84       1.15-2.23   
+pooled  14     363  0.026     0.019-0.033  1.18       0.65-1.48   
+pooled  15     364  0.048     0.037-0.064  1.04       0.84-1.37   
+pooled  16     27   0.136     0.122-0.188  6.51       4.57-9.01   
+pooled  17     27   0.273     0.206-0.395  13.49      8.52-23.97  
+
+DLT conditioning of each fit by confident-count bucket (recorded, never used to reject) — sigma[7]/sigma[0], near zero meaning the solution is barely distinguished from a family; never pooled across buckets, since the matrix shape and so the meaning of sigma[7] changes with the count
+scope   bucket  n     min        q1         median     q3         max      
+clip_1  5       15    6.206e-03  1.125e-02  4.387e-02  7.379e-02  7.699e-02
+clip_1  6       160   1.586e-02  5.501e-02  1.435e-01  1.945e-01  2.116e-01
+clip_1  7       289   2.549e-02  5.838e-02  1.234e-01  1.455e-01  2.018e-01
+clip_1  8       24    4.342e-02  6.123e-02  8.884e-02  9.544e-02  1.115e-01
+clip_2  6       300   1.579e-01  1.721e-01  1.999e-01  2.313e-01  2.393e-01
+clip_2  7       420   1.192e-01  1.373e-01  1.425e-01  1.450e-01  2.160e-01
+clip_2  8       90    1.001e-01  1.101e-01  1.138e-01  1.194e-01  1.371e-01
+clip_3  5       48    7.053e-03  2.779e-02  4.336e-02  1.840e-01  2.095e-01
+clip_3  6       408   1.484e-02  1.489e-01  1.753e-01  2.095e-01  2.237e-01
+clip_3  7       409   3.686e-02  1.303e-01  1.349e-01  1.374e-01  2.025e-01
+pooled  5       63    6.206e-03  2.764e-02  4.344e-02  1.797e-01  2.095e-01
+pooled  6       868   1.484e-02  1.497e-01  1.762e-01  2.122e-01  2.393e-01
+pooled  7       1118  2.549e-02  1.216e-01  1.372e-01  1.446e-01  2.160e-01
+pooled  8       114   4.342e-02  1.037e-01  1.113e-01  1.168e-01  1.371e-01
+
+Temporal stability (section 4.5)
+clip    index  pairs  median_px  p95_px
+clip_1  0      31     12.89      26.58 
+clip_1  1      29     12.85      25.44 
+clip_1  2      25     10.98      22.01 
+clip_1  3      18     9.32       15.74 
+clip_1  4      4      4.56       6.04  
+clip_1  6      51     22.15      28.21 
+clip_1  7      59     21.89      28.13 
+clip_1  8      41     15.82      31.30 
+clip_1  9      38     15.89      32.02 
+clip_1  11     27     2.21       6.62  
+clip_1  12     44     4.25       14.33 
+clip_1  13     50     5.73       20.60 
+clip_1  14     57     7.30       21.50 
+clip_1  15     58     7.53       21.05 
+clip_1  16     70     10.42      25.93 
+clip_1  17     68     9.78       25.05 
+clip_2  10     12     2.12       5.52  
+clip_2  11     97     2.86       6.81  
+clip_2  12     173    2.00       6.37  
+clip_2  13     173    1.43       7.38  
+clip_2  14     173    1.57       8.21  
+clip_2  15     173    1.69       8.36  
+clip_2  16     173    1.76       9.68  
+clip_2  17     173    1.82       8.61  
+clip_3  0      66     6.56       18.58 
+clip_3  1      65     5.80       17.71 
+clip_3  2      58     5.08       13.89 
+clip_3  3      48     4.35       10.18 
+clip_3  6      6      18.21      43.35 
+clip_3  7      58     19.46      37.78 
+clip_3  8      87     8.47       21.03 
+clip_3  9      81     7.26       20.10 
+clip_3  11     78     1.80       3.99  
+clip_3  12     119    1.41       14.40 
+clip_3  13     125    1.19       20.97 
+clip_3  14     130    1.36       23.83 
+clip_3  15     130    1.42       25.55 
+clip_3  16     142    1.70       27.83 
+clip_3  17     138    1.68       27.43 
+
+Limitation: reprojection is measured only on frames already carrying at least 5 confident keypoints, so the frames where localisation error is most suspected are precisely the ones excluded. Read the coverage table beside the residuals. Residuals are reported per confident-count bucket and never pooled across buckets: a 5-keypoint frame is an exact 4-point fit and is not comparable to an over-determined 8-keypoint frame.

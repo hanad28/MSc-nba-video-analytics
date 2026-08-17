@@ -1,0 +1,96 @@
+
+Identity-level accounting on the grouped test split
+images  matched  confident_but_absent  labelled_but_unconfident  labelled_total  matched+fn  reconciles_labelled  confident_total  matched+fp  reconciles_confident
+220     1802     28                    33                        1835            1835        yes                  1830             1830        yes                 
+
+Reprojection image accounting — every image is skipped, lost (to either cause) or scored (degenerate_fits counts individual held-out reprojections, not images)
+images  skipped_below_5  lost_all_fits_degenerate  lost_all_fits_collinear  scored  accounted  reconciles  degenerate_fits  collinear_fits  observations
+220     8                0                         0                        212     220        yes         0                180             1634        
+
+Composition of the pooled reprojection pixel column by resolution — scored images only, since a skipped or lost image contributes no residual. The share is weighted by observation, not by image, because one image contributes several held-out residuals. This is the reason the pixel column below is indicative only
+resolution  images  observations  observation_share  diagonal_px
+1280x720    89      553           0.338              1468.6     
+2336x1752   49      488           0.299              2920.0     
+1624x1234   32      319           0.195              2039.6     
+2456x2054   12      120           0.073              3201.7     
+1920x1080   16      85            0.052              2202.9     
+640x360     14      69            0.042              734.3      
+
+Leave-one-out reprojection on the grouped test split by confident-count bucket (section 4.2, the same instrument as the clip measurement). COMPARE ON METRES: median_m/iqr_m are comparable with the clip table, median_px/iqr_px are INDICATIVE ONLY because they pool across resolutions (see limitation 4)
+scope  bucket  n     median_m  iqr_m        median_px_indicative  iqr_px_indicative
+test   5       22    0.159     0.061-0.405  3.53                  0.94-11.47       
+test   6       118   0.063     0.035-0.111  1.56                  0.81-4.07        
+test   7       136   0.075     0.052-0.098  2.69                  1.71-4.29        
+test   8       254   0.087     0.062-0.111  3.11                  2.29-4.35        
+test   9+      1104  0.133     0.078-0.259  7.27                  3.67-15.04       
+
+DLT conditioning of each fit by confident-count bucket (recorded, never used to reject) — sigma[7]/sigma[0], near zero meaning the solution is barely distinguished from a family; never pooled across buckets, since the matrix shape and so the meaning of sigma[7] changes with the count
+scope  bucket  n     min        q1         median     q3         max      
+test   5       22    7.584e-03  3.051e-02  4.015e-02  1.928e-01  2.107e-01
+test   6       118   1.685e-02  1.405e-01  1.762e-01  2.016e-01  2.256e-01
+test   7       136   4.073e-02  1.199e-01  1.331e-01  1.527e-01  2.380e-01
+test   8       254   4.377e-02  9.661e-02  1.069e-01  1.183e-01  1.462e-01
+test   9+      1104  5.144e-02  1.150e-01  1.443e-01  1.613e-01  1.944e-01
+
+Direct error against the split labels, per keypoint index and pooled — normalised by image diagonal because the split spans resolutions
+index   n     median_px  iqr_px      median_norm  iqr_norm     
+0       111   6.26       3.45-11.19  0.0034       0.0020-0.0062
+1       111   5.69       3.79-9.58   0.0033       0.0021-0.0056
+2       107   6.71       4.57-9.13   0.0039       0.0019-0.0068
+3       97    7.38       3.97-13.86  0.0040       0.0021-0.0072
+4       76    9.57       5.93-12.96  0.0045       0.0025-0.0073
+5       64    10.55      5.78-13.67  0.0046       0.0022-0.0073
+6       102   12.38      8.81-21.95  0.0056       0.0032-0.0108
+7       125   12.25      7.81-19.03  0.0056       0.0039-0.0085
+8       111   8.42       4.83-13.24  0.0045       0.0030-0.0069
+9       111   6.34       3.49-9.77   0.0033       0.0021-0.0058
+10      80    7.39       4.32-11.07  0.0032       0.0024-0.0045
+11      96    6.17       4.05-9.20   0.0032       0.0017-0.0046
+12      101   4.96       3.27-7.48   0.0026       0.0016-0.0036
+13      101   5.11       2.72-7.42   0.0023       0.0016-0.0031
+14      102   5.84       3.49-8.20   0.0027       0.0018-0.0038
+15      102   5.10       2.99-7.74   0.0026       0.0014-0.0038
+16      103   6.70       4.22-9.30   0.0031       0.0021-0.0046
+17      102   7.07       4.71-10.61  0.0034       0.0022-0.0049
+pooled  1802  6.92       4.07-11.21  0.0034       0.0020-0.0056
+
+Limitations, stated with the results rather than discovered afterwards:
+  1. The test images are contrast-equalised and the evaluation clips are not.
+     Roboflow applied adaptive equalisation to every image in this dataset, so a
+     clips-versus-test comparison confounds genuine domain gap (different
+     broadcasts, different courts) with a preprocessing mismatch. K4 predicts
+     degradation without separating the two, and this script cannot separate them
+     either. Ablation A2 is the measurement that addresses it.
+  2. Ground truth here is Roboflow's annotation, not this project's. Its quality
+     is unknown and unaudited, unlike the possession and keypoint-audit ground
+     truth. A large measured direct error could be model error or annotation
+     error, and this measurement cannot distinguish them.
+  3. Reprojection is measured only on images already carrying at least five
+     confident keypoints, so the images where localisation error is most
+     suspected are precisely the ones excluded — the same coverage limitation the
+     clip measurement carries, and the reason the two are comparable.
+  4. COMPARE THE TEST SPLIT AND THE CLIPS ON METRES, NOT PIXELS. The split spans
+     six resolutions — 1280x720 (92 images), 2336x1752 (49), 1624x1234 (32),
+     640x360 (19), 1920x1080 (16), 2456x2054 (12) — whose diagonals differ by
+     roughly 6.8x, and the most common is only 42% of the split. A pooled median
+     of raw pixel residuals is therefore dominated by which resolutions happen to
+     be present rather than by localisation quality. The pixel column is retained
+     because the clip table reports raw pixels and normalising here would break
+     the comparability this script exists to provide, but it is indicative only.
+     Metres are resolution-independent, being measured on the court plane, and are
+     the column the clips-versus-test comparison must be made on. Direct error
+     carries a normalised column instead precisely because it has no clip-side
+     counterpart to stay comparable with.
+  5. THE TWO MEASUREMENTS USE DIFFERENT INFERENCE PATHS, UNVERIFIED. The clip
+     script infers in batches of 20 through CourtKeypoints.run_detection(), while
+     this script calls detect_keypoints() on one image at a time. Ultralytics
+     letterboxes a batch to a common input shape, so a batched prediction and a
+     single-image prediction are not guaranteed numerically identical — and this
+     script exists to produce a residual comparable with the clip table. Whether
+     the two paths agree HAS NOT BEEN CHECKED; it needs the checkpoint and the
+     dataset, so it is a JupyterHub task. Treat any small clips-versus-test
+     difference as potentially an artefact of this until it is verified.
+  6. No keypoint cache is written or fingerprint-validated by this script. Per-
+     image inference has no cache_path, unlike run_detection(), so every re-run
+     re-infers all 220 images and no stale-cache check protects these numbers the
+     way it protects the clip measurement.

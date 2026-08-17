@@ -1,0 +1,11 @@
+﻿clip,event_id,event_type,start_frame,end_frame,from_track_id,to_track_id,from_team,to_team,notes
+clip_1,1,block,85,95,9,unknown,2,unclear,layup attempt by track 9 (Clippers) blocked onto the backboard by track 8 (Lakers); clip ends before anyone collects the loose ball
+clip_2,1,pass,0,30,9,2,1,1,penetration into the key then swing to the wing
+clip_2,2,pass,30,60,2,7,1,1,swing to the corner
+clip_2,3,pass,60,90,7,10,1,1,into the centre at the top of the key
+clip_2,4,pass,120,120,10,7,1,1,return pass completing the one-two; receiver cutting to the rim
+clip_2,5,shot,150,150,7,unknown,1,unclear,dunk
+clip_3,1,interception,30,60,3,4,2,1,handle lost by track 3 (Rockets); ball airborne and contested; won by track 4 (Kings) — see the 12 August definition amendment
+clip_3,2,pass,150,150,4,2,1,1,first pass of the fast-break one-two
+clip_3,3,pass,180,180,2,4,1,1,return pass completing the one-two
+clip_3,4,shot,210,210,4,unknown,1,unclear,dunk

@@ -1,0 +1,67 @@
+# Targets Python 3.11, the version every reported result was produced on
+# (3.11.15). numpy 2.4 and pandas 3.0 below do not resolve on older versions,
+# and pip reports that as a missing package version rather than as a Python
+# version problem, which is confusing to diagnose.
+
+# Core computer vision
+ultralytics==8.4.62         # YOLOv8 detection + pose
+opencv-python==4.13.0.92
+
+# Tracking
+supervision==0.28.0         # ByteTrack wrapper + detection utilities
+
+# Team classification
+transformers==4.44.0        # HuggingFace (FashionCLIP); known CVEs, see note below
+# The reported results were produced with the CUDA 12.4 builds, torch 2.4.0+cu124
+# and torchvision 0.19.0+cu124, from https://download.pytorch.org/whl/cu124. Those
+# wheels carry a local version suffix and are not published on PyPI, so pinning
+# them here would break `pip install -r requirements.txt` on any machine that has
+# not added that index. The plain pins below resolve from PyPI on every platform
+# and install a build sufficient for the test suite, which needs no GPU.
+torch==2.4.0                # known CVEs, see note below
+torchvision==0.19.0         # transitive: required by ultralytics. Pinned explicitly to hold
+                            #   its build in step with torch above.
+Pillow==12.3.0              # security patch release (12.2.0 has heap OOB write / decompression-bomb CVEs)
+scikit-learn==1.9.0         # KMeans: the colour baseline AND the embedding-clustering arm
+
+# Plotting (labelling/audit notebooks and the measurement scripts)
+matplotlib==3.10.9
+scipy==1.17.1               # imported directly for the McNemar tests in
+                            #   scripts/team_classification_sweep.ipynb (from scipy.stats
+                            #   import binomtest), and also required by ultralytics,
+                            #   supervision and scikit-learn.
+
+# Evaluation
+motmetrics==1.4.0           # CLEAR MOT metrics (MOTA, MOTP, IDF1); 1.4.0 is the latest
+                            #   release (Feb 2024). NOTE: its iou_matrix() calls np.asfarray,
+                            #   removed in numpy 2.0, so it is unusable against the pinned numpy;
+                            #   MOTEvaluator builds the distance matrix via mm.distances.boxiou instead.
+
+# Utilities
+numpy==2.4.4
+pandas==3.0.3
+PyYAML==6.0.3
+tqdm==4.68.1                # transitive: required by transformers, supervision and
+                            #   huggingface_hub. Not imported by this project directly.
+
+# Training-only utilities
+roboflow==1.3.9
+albumentations==2.0.8
+
+# Labelling notebook (basketball/labelling/, scripts/label_team_gt_per_frame.ipynb)
+nbformat==5.10.4            # notebook read/write/validate, also used by tests/test_label_notebook_wiring.py
+ipywidgets==8.1.8           # interactive labelling UI widgets (JupyterHub-side only)
+ipython==9.14.1             # imported directly by scripts/label_team_gt_per_frame.ipynb
+                            #   (from IPython.display import display), declared rather than
+                            #   left to rest on ipywidgets' transitive dependency on it.
+                            #   The version installed in the JupyterHub environment where
+                            #   every reported result was produced.
+
+# Outstanding dependency security notes (not bumped here; both change inference
+# numerics and would invalidate the verified ball-gate audit and FashionCLIP results,
+# so they need a re-validation run before upgrading):
+#   torch 2.4.0        -> >=2.6.0  (CVE torch.load RCE even with weights_only=True)
+#   transformers 4.44.0 -> >=4.53.0 (unsafe deserialisation + multiple ReDoS)
+
+# Testing
+pytest==9.1.1

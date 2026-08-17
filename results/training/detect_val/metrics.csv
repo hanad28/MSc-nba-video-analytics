@@ -1,0 +1,2 @@
+model,dataset,split,class,precision,recall,map50,map50_95,source
+ball.pt,basketball-players-fy4c2-vfsuv v17,test,Ball,0.933,0.792,0.836,0.475,transcribed_2026-07-15

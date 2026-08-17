@@ -1,0 +1,11 @@
+# Normalise all text to LF in the repository; working copies may vary.
+* text=auto eol=lf
+
+# Binary content, never normalised.
+*.mp4 binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+
+# Keep notebooks out of GitHub's language statistics.
+*.ipynb linguist-documentation

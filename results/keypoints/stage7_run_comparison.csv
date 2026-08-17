@@ -1,0 +1,3 @@
+run,schedule,epochs,patience,best_pose_map50_95_epoch,checkpoint_epoch,test_pose_map50,test_pose_map50_95,test_box_map50_95,n_images
+A,"epochs=100, patience=30",100,30,98,100,0.9849,0.9352,0.9252,220
+B,"epochs=500, patience=100",500,100,439,494,0.995,0.9669,0.9353,220

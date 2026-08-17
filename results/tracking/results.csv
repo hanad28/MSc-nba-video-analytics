@@ -1,0 +1,21 @@
+scope,config,clip,mota,motp,idf1,id_switches (lower bound — sampled GT),false_positives,misses,precision,recall
+per_clip,production,clip_1,0.7683,0.9900,0.8684,1,3,15,0.9571,0.8171
+per_clip,production,clip_2,0.8652,0.9975,0.8961,1,2,21,0.9874,0.8820
+per_clip,production,clip_3,0.8357,0.9818,0.7035,12,3,19,0.9843,0.9082
+per_clip,players_pt,clip_1,0.6707,0.8679,0.7943,2,1,24,0.9831,0.7073
+per_clip,players_pt,clip_2,0.7753,0.8745,0.7774,9,6,25,0.9623,0.8596
+per_clip,players_pt,clip_3,0.7391,0.8577,0.6198,14,5,35,0.9718,0.8309
+per_clip,lowscore_025,clip_1,0.7805,0.9841,0.8758,1,3,14,0.9577,0.8293
+per_clip,lowscore_025,clip_2,0.8708,0.9928,0.9000,1,3,19,0.9815,0.8933
+per_clip,lowscore_025,clip_3,0.8309,0.9818,0.6935,13,3,19,0.9843,0.9082
+per_clip,lowscore_010,clip_1,0.7683,0.9841,0.8701,1,4,14,0.9444,0.8293
+per_clip,lowscore_010,clip_2,0.8539,0.9928,0.8915,3,4,19,0.9755,0.8933
+per_clip,lowscore_010,clip_3,0.8213,0.9818,0.6917,14,4,19,0.9792,0.9082
+per_clip,mcf1,clip_1,0.7683,0.9624,0.8696,2,7,10,0.9114,0.8780
+per_clip,mcf1,clip_2,0.8315,0.9845,0.8138,5,9,16,0.9474,0.9101
+per_clip,mcf1,clip_3,0.8116,0.9751,0.6880,14,9,16,0.9550,0.9227
+pooled,production,all,0.8351,0.9891,0.8050,14,8,55,0.9810,0.8822
+pooled,players_pt,all,0.7409,0.8659,0.7100,25,12,84,0.9696,0.8201
+pooled,lowscore_025,all,0.8373,0.9864,0.8036,15,9,52,0.9788,0.8887
+pooled,lowscore_010,all,0.8244,0.9864,0.7987,18,12,52,0.9719,0.8887
+pooled,mcf1,all,0.8116,0.9765,0.7677,21,25,42,0.9444,0.9101

@@ -1,0 +1,5 @@
+split,total_images,images_dropped,images_used,percent_dropped,source
+train,1028,259,769,25.2,transcribed_2026-08-13
+valid,220,38,182,17.3,transcribed_2026-08-13
+train,1028,0,1028,0.0,measured_2026-08-15
+valid,220,0,220,0.0,measured_2026-08-15

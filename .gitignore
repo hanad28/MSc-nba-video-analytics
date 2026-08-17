@@ -1,0 +1,25 @@
+# Python build artefacts
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Model weights: distributed via the GitHub Release, never committed
+models/*.pt
+
+# Pipeline caches: regenerated at run time
+data/processed/*/
+
+# Pipeline video output: regenerated at run time
+data/outputs/*.avi
+data/outputs/*.mp4
+
+# data/annotations/ is deliberately tracked: the hand-labelled ground truth
+# is small and every accuracy figure depends on it.
+
+# Editor and OS noise
+.vscode/
+.DS_Store
+Thumbs.db

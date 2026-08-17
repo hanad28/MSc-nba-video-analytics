@@ -1,0 +1,5 @@
+clip,n_frames,tracks,displacements_measured,speeds_computed,speeds_suppressed_by_gap,speed_rate
+clip_1,117,13,651,643,8,0.9877
+clip_2,174,14,1609,1606,3,0.9981
+clip_3,243,17,1581,1572,9,0.9943
+TOTAL,534,,3841,3821,20,0.9948

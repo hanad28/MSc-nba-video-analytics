@@ -24,6 +24,7 @@ what it needs).
 | `homography/` | Court-mapping counts per clip | `scripts/measure_mapping_and_metrics.py` |
 | `metrics/` | Speed and distance counts per clip | `scripts/measure_mapping_and_metrics.py` |
 | `training/` | Per-epoch metrics, run configurations and validation plots for the two production training runs and the detection validation run | Ultralytics training and validation, run from the notebooks in `training/` |
+| `camera_motion/` | Per-frame global camera motion of the three evaluation clips: horizontal displacement of the image centre and scale change, per frame pair | `scripts/measure_camera_motion.py` |
 
 Notes an examiner may want:
 

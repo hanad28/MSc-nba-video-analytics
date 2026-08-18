@@ -150,7 +150,16 @@ shareplaypro.in, the homography target for the tactical view.
 
 | Paper artefact | Produced by | Evidence |
 | --- | --- | --- |
-| MAPPING_PLACEHOLDER — completed when the dissertation is finalised | | |
+| Fig. 1 pipeline execution | `scripts/plot_pipeline_diagram.py` | `main.py` (the figure draws that file's call order; it reads no results) |
+| Fig. 2 team margin distributions | `scripts/plot_team_margins.py` | `results/team_classification/margin_measurement/` (9 files), `results/team_classification/inference_grid/` (9 of 61), `config/default.yaml` |
+| Fig. 3 three-panel montage | `scripts/plot_montage_figure.py` | `data/outputs/montage_frames/` (3 panels), extracted by `scripts/extract_montage_frames.py` from the annotated videos; neither is committed |
+| Table I team assignment, three methods | `scripts/team_classification_sweep.ipynb` | `results/team_classification/sweep_results.csv`; the McNemar tests are notebook output with no CSV behind them |
+| Table II possession-to-events cascade | `scripts/possession_sweep.ipynb`, `scripts/event_scoring.ipynb` | `results/possession/possession_sweep_results.csv`, `results/possession/possession_share.csv`, `results/possession/possession_sweep_gated_results.csv`, `results/events/event_scores.csv` |
+| Table III pre-registered predictions | `docs/prereg/court_keypoint_spec.md` §6, `docs/prereg/event_detection_spec.md` Part 3 | K1 `results/keypoints/stage7_run_comparison.csv`; K3, K5 `data/annotations/keypoint_audit.csv`; K4 `results/keypoints/reprojection.csv` and `test_split_reprojection.csv`; E3–E5 `results/events/event_scores.csv` and `data/annotations/event_gt.csv`. K2 has no committed artefact; E1 and E2 are per-event and exist only as notebook output |
+| Table C1 tracking, all configurations | `scripts/run_evaluation.py` | `results/tracking/results.csv`; the frames carrying the scored switches are in `results/tracking/switches.csv` |
+
+Model checksums are in `models/checksums.txt`; verify a download with
+`sha256sum -c checksums.txt`.
 
 ## Licence
 

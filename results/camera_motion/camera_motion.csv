@@ -1,0 +1,4 @@
+clip,width,height,fps,frames,duration_s,frame_pairs,pairs_estimated,median_abs_dx_px,p95_abs_dx_px,median_abs_scale_change,max_abs_scale_change,frames_abs_dx_over_10px
+clip_1,1280,720,30.0,117,3.9,116,116,14.9809,25.0206,0.001639,0.004939,72
+clip_2,1280,720,30.0,174,5.8,173,173,0.1851,7.3164,0.002679,0.006667,0
+clip_3,1280,720,30.0,243,8.1,242,242,2.5208,25.797,0.000238,0.011215,85

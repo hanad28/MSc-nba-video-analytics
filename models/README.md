@@ -22,6 +22,9 @@ non-commercial academic assessment of this dissertation. The three
 checkpoints are fine-tuned YOLOv8 weights, which Ultralytics licenses
 under AGPL-3.0.
 
+Sizes are decimal megabytes (10^6 bytes), matching what GitHub shows on the
+Release page; in binary units the three files are 130, 133 and 130 MiB.
+
 Full hashes are in `checksums.txt` in this directory. Verify a download with:
 
     sha256sum -c checksums.txt

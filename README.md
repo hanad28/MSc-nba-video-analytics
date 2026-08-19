@@ -51,10 +51,18 @@ Architecture, design rules and caching: `docs/pipeline_overview.md`.
 | Stage | Result | Scope |
 | --- | --- | --- |
 | Tracking | IDF1 0.805, 14 identity switches (lower bound; production configuration) | 3 clips, 467 annotated boxes |
-| Team classification | 94.0% effective accuracy (FashionCLIP, full-body crop; 94.4% on decided frames) | labelled frames, 3 clips |
+| Team classification | 0.9443 mean held-out effective accuracy (FashionCLIP, full-body crop, aggregation window 9 as deployed) | labelled frames, 3 clips |
 | Possession | 67.8% frame agreement (production configuration, 488 scoreable frames) | 534 hand-labelled frames |
 | Events | TP 2, FP 12, FN 5 (team criterion, tolerance 10 frames) | 3 clips against hand-labelled ground truth |
 | Court keypoints | 0.9669 test pose mAP50-95 | 220-image grouped test split |
+
+The team classification figure is the deployed configuration,
+`aggregation_window: 9` in `config/default.yaml`, measured by the window
+sweep in `scripts/team_classification_sweep.ipynb`. The committed grid in
+`results/team_classification/sweep_results.csv` was produced at the
+aggregation function's default window of 15, where the same arm scores
+0.9401. The comparator arms are unaffected: K-means and CLIP-embedding
+both adopt `track_majority`, which takes no window.
 
 Full measured evidence, including results the dissertation does not
 discuss in depth, is in `results/`, indexed by `results/README.md`.
@@ -153,10 +161,11 @@ shareplaypro.in, the homography target for the tactical view.
 | Fig. 1 pipeline execution | `scripts/plot_pipeline_diagram.py` | `main.py` (the figure draws that file's call order; it reads no results) |
 | Fig. 2 team margin distributions | `scripts/plot_team_margins.py` | `results/team_classification/margin_measurement/` (9 files), `results/team_classification/inference_grid/` (9 of 61), `config/default.yaml` |
 | Fig. 3 three-panel montage | `scripts/plot_montage_figure.py` | `data/outputs/montage_frames/` (3 panels), extracted by `scripts/extract_montage_frames.py` from the annotated videos; neither is committed |
-| Table I team assignment, three methods | `scripts/team_classification_sweep.ipynb` | `results/team_classification/sweep_results.csv`; the McNemar tests are notebook output with no CSV behind them |
+| Table I team assignment, three methods | `scripts/team_classification_sweep.ipynb` | Comparator arms (K-means, CLIP embeddings) from `results/team_classification/sweep_results.csv`. The FashionCLIP row is the notebook's window-9 sweep output and has no committed CSV, because the grid CSV was written at window 15. The McNemar tests are likewise notebook output with no committed file |
 | Table II possession-to-events cascade | `scripts/possession_sweep.ipynb`, `scripts/event_scoring.ipynb` | `results/possession/possession_sweep_results.csv`, `results/possession/possession_share.csv`, `results/possession/possession_sweep_gated_results.csv`, `results/events/event_scores.csv` |
 | Table III pre-registered predictions | `docs/prereg/court_keypoint_spec.md` §6, `docs/prereg/event_detection_spec.md` Part 3 | K1 `results/keypoints/stage7_run_comparison.csv`; K3, K5 `data/annotations/keypoint_audit.csv`; K4 `results/keypoints/reprojection.csv` and `test_split_reprojection.csv`; E3–E5 `results/events/event_scores.csv` and `data/annotations/event_gt.csv`. K2 has no committed artefact; E1 and E2 are per-event and exist only as notebook output |
 | Table C1 tracking, all configurations | `scripts/run_evaluation.py` | `results/tracking/results.csv`; the frames carrying the scored switches are in `results/tracking/switches.csv` |
+| Camera motion (evaluation footage, Fig. 3 caption) | `scripts/measure_camera_motion.py` | `results/camera_motion/camera_motion.csv`, plus the three per-clip series `camera_motion_clip_1.csv`, `camera_motion_clip_2.csv` and `camera_motion_clip_3.csv` |
 
 Model checksums are in `models/checksums.txt`; verify a download with
 `sha256sum -c checksums.txt`.

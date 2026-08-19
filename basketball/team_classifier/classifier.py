@@ -128,9 +128,14 @@ class FashionCLIPClassifier(TeamClassifier):
         self.crop_fraction = crop_fraction
         self.confidence_threshold = confidence_threshold
         # Off by default: the 11 August 2026 sweep measured this as the
-        # 'memoise_reset' aggregation policy and it cost 2.7pp of mean
-        # held-out effective accuracy against deciding every frame fresh
-        # (0.911 vs 0.938), so it must not be active in production.
+        # 'memoise_reset' aggregation policy. On the adopted arm (C_nba,
+        # crop 1.0) it cost 3.6pp of mean held-out effective accuracy
+        # against deciding every frame fresh, 0.8883 against 0.9242, so it
+        # must not be active in production. Both figures are
+        # window-independent: neither policy consults the aggregation
+        # window. An earlier note here quoted 0.911 against 0.938, which
+        # was accuracy-on-decided taken as the best value across every
+        # variant and crop fraction, not this arm's effective accuracy.
         # reset_interval has no effect while this is False: every frame is
         # classified independently and assignment_cache is never consulted
         # or populated. Kept, not deleted: it is a measured comparator the

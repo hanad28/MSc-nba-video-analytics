@@ -14,6 +14,14 @@ and place them in this directory.
 | `keypoints.pt` | 140 MB | `b428fa9d…9d3e80` | Court keypoint model (YOLOv8x-pose, 18 keypoints). The checkpoint Ultralytics saved at epoch 494 of the 500-epoch run. |
 | `players.pt` | 137 MB | `e3b2f621…13681c` | Not used by the pipeline. Two-class detector retained as the comparison configuration in the tracking evaluation (`scripts/run_evaluation.py`). |
 
+**Licence position on `keypoints.pt`.** It was trained on Roboflow
+`fyp-3bwmg / reloc2-den7l` v1, whose licence field reads "Private" and
+which grants no explicit reuse terms; the dataset is attributed in full
+in the root `README.md`, and the checkpoint is published here for
+non-commercial academic assessment of this dissertation. The three
+checkpoints are fine-tuned YOLOv8 weights, which Ultralytics licenses
+under AGPL-3.0.
+
 Full hashes are in `checksums.txt` in this directory. Verify a download with:
 
     sha256sum -c checksums.txt

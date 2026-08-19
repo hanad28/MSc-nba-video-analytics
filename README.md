@@ -163,6 +163,21 @@ Model checksums are in `models/checksums.txt`; verify a download with
 
 ## Licence
 
-AGPL-3.0 (see `LICENSE`). The distributed model weights are fine-tuned
-YOLOv8 checkpoints, and Ultralytics licenses YOLOv8 and its derivative
-weights under AGPL-3.0.
+**Code.** AGPL-3.0 (see `LICENSE`), covering the `basketball/` package,
+`main.py`, `scripts/`, `tests/`, `training/` and `evaluation/`. The
+pipeline imports Ultralytics YOLOv8, which is itself AGPL-3.0, so the
+combined work is distributed under the same terms.
+
+**Model weights.** The distributed checkpoints are fine-tuned YOLOv8
+weights, and Ultralytics licenses YOLOv8 and its derivative weights
+under AGPL-3.0. See `models/README.md` for the position on
+`keypoints.pt`, whose training dataset grants no explicit reuse terms.
+
+**Third-party material, not covered by that grant.** The three
+evaluation clips in `data/raw/` are NBA broadcast footage, and
+`assets/court_template.png` is sourced from shareplaypro.in. Both are
+attributed above and are included solely for non-commercial academic
+research and the assessment of this dissertation. Copyright remains
+with the respective owners, no licence to them is granted or implied by
+this repository, and they should not be redistributed for other
+purposes.
